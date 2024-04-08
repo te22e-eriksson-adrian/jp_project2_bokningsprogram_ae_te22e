@@ -14,6 +14,30 @@ public class App {
         tangentbord.nextLine();
         System.out.println();
 
+        //Lägga till en passagerare
+        if (val==1) {
+            int obokade_platser = 0;
+            for (int i = 0; i < array.length; i++) {
+                if (array[i]==0) {
+                    System.out.println("Plats "+i);
+                    obokade_platser++;
+                }
+            }
+            if (obokade_platser==0) {
+                System.out.println("Tyvärr finns det inga lediga platser kvar.");
+            }else{
+                System.out.println();
+                System.out.print("Välj plats att boka: ");
+                int plats = tangentbord.nextInt();
+                tangentbord.nextLine();
+                System.out.print("Inmata personnummer för ny platsinnehavare: ");
+                array[plats] = tangentbord.nextInt();
+                tangentbord.nextLine();
+                System.out.println();
+                System.out.println("Summering: \nVald plats "+plats+"\nPlatsinnehavare: "+array[plats]);
+            }
+        }
+
         //Antal lediga platser (val 2)
         if (val==2) {
             int lediga_platser = 0;
