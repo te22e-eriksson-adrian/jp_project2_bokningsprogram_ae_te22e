@@ -24,6 +24,17 @@ public class App {
             }
             System.out.println("Antal lediga platser: "+lediga_platser);
         }
+
+        //Vinst på antal sålda biljetter
+        if (val==3) {
+            double vinst = 0;
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] != 0) {
+                    vinst+=299.90;
+                }
+            }
+            System.out.println("Vinst för antal sålda biljetter: "+vinst+" SEK");
+        }
         tangentbord.close();
     }
 }
