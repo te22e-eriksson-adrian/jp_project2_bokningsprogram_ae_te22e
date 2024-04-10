@@ -1,27 +1,30 @@
 import java.util.Scanner;
 
 public class App {
+    
+    static Scanner tangentbord = new Scanner(System.in);
+    static int menyval;
     public static void main(String[] args) throws Exception {
-        Scanner tangentbord = new Scanner(System.in);
         int[] array = new int[20];
-        int val = 0;
+        menyval = 0;
 
-        while (val != 4) {
+        while (menyval != 4) {
             //Meny
-            System.out.println("Bokningssystem för bussresor:");
+            /* System.out.println("Bokningssystem för bussresor:");
             System.out.println("1. Lägga till en passagerare - boka en obokad plats \n2. Skriv ut antal lediga platser \n3. Beräkna vinsten av antalet sålda biljetter \n4. Avsluta programmet");
             System.out.println();
             System.out.print("Inmata menyval här: ");
             val = tangentbord.nextInt();
             tangentbord.nextLine();
-            System.out.println();
+            System.out.println(); */
+            int menyval = start_meny();
 
             //Lägga till en passagerare
-            if (val==1) {
+            if (menyval==1) {
                 int obokade_platser = 0;
                 for (int i = 0; i < array.length; i++) {
                     if (array[i]==0) {
-                        System.out.println("Plats "+i);
+                        System.out.println("Plats "+(i+1));
                         obokade_platser++;
                     }
                 }
@@ -41,7 +44,7 @@ public class App {
             }
 
             //Antal lediga platser (val 2)
-            if (val==2) {
+            if (menyval==2) {
                 int lediga_platser = 0;
                 for (int i = 0; i < array.length; i++) {
                     if (array[i]==0) {
@@ -52,7 +55,7 @@ public class App {
             }
 
             //Vinst på antal sålda biljetter
-            if (val==3) {
+            if (menyval==3) {
                 double vinst = 0;
                 for (int i = 0; i < array.length; i++) {
                     if (array[i] != 0) {
@@ -65,5 +68,15 @@ public class App {
         //Avsluta programmet
         System.out.println("Programmet avslutat.");
         tangentbord.close();
+    }
+    static int start_meny(){
+        System.out.println("Bokningssystem för bussresor:");
+        System.out.println("1. Lägga till en passagerare - boka en obokad plats \n2. Skriv ut antal lediga platser \n3. Beräkna vinsten av antalet sålda biljetter \n4. Avsluta programmet");
+        System.out.println();
+        System.out.print("Inmata menyval här: ");
+        int val = tangentbord.nextInt();
+        tangentbord.nextLine();
+        System.out.println();
+        return val;
     }
 }
