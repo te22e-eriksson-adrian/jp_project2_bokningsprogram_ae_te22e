@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         menyval = 0;
 
-        while (menyval != 5) {
+        while (menyval != 6) {
             //Meny
             menyval = start_meny();
             switch (menyval) {
@@ -17,14 +17,18 @@ public class App {
                     lägg_till_passagerare();
                     break;
                 case 2:
+                    //Avboka en passagerare
+                    avboka_passagerare();
+                    break;
+                case 3:
                     //Antal lediga platser
                     tillgängliga_platser();
                     break;
-                case 3:
+                case 4:
                     //Vinst på antal sålda biljetter
                     biljett_vinst();
                     break;
-                case 4:
+                case 5:
                     //Hitta bokad plats
                     hitta_bokad_plats();
                     break;
@@ -32,7 +36,7 @@ public class App {
                     //Om fel inmatad siffra
                     System.out.println("Du inmatade ett felaktigt värde, var god starta om programmet och prova igen.");
                     System.out.println();
-                    menyval = 5;
+                    menyval = 6;
                     break;
             }
         }
@@ -42,7 +46,7 @@ public class App {
     }
     static int start_meny() {
         System.out.println("Bokningssystem för bussresor:");
-        System.out.println("1. Lägga till en passagerare - boka en obokad plats \n2. Skriv ut antal lediga platser \n3. Beräkna vinsten av antalet sålda biljetter \n4. Hitta kundens bokade plats \n5. Avsluta programmet");
+        System.out.println("1. Lägga till en passagerare \n2. Avboka en passagerare \n3. Skriv ut antal lediga platser \n4. Beräkna vinsten av antalet sålda biljetter \n5. Hitta kundens bokade plats \n6. Avsluta programmet");
         System.out.println();
         System.out.print("Inmata menyval här: ");
         int val = get_user_input();
@@ -107,6 +111,22 @@ public class App {
         }
         if (status==0) {
             System.out.println("Personnummer "+nummer+" har ingen registrerad plats.");
+        }
+        System.out.println();
+    }
+    static void avboka_passagerare() {
+        int status = 0;
+        System.out.print("Välj personnummer till passagerare att avboka: ");
+        int nummer = get_user_input();
+        for (int i = 0; i < array.length; i++) {
+            if (array[i]==nummer) {
+                array[i] = 0;
+                System.out.println("Personnummer "+nummer+" har inte längre en plats");
+                status = 1;
+            }
+        }
+        if (status==0) {
+            System.out.println("Personnummer "+nummer+" fanns inte registrerat. (Ingen avbokades.)");
         }
         System.out.println();
     }
