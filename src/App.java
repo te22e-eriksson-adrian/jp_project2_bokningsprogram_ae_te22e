@@ -17,7 +17,7 @@ public class App {
                     lägg_till_passagerare();
                     break;
                 case 2:
-                    //Antal lediga platser (val 2)
+                    //Antal lediga platser
                     tillgängliga_platser();
                     break;
                 case 3:
@@ -41,10 +41,14 @@ public class App {
         System.out.println("1. Lägga till en passagerare - boka en obokad plats \n2. Skriv ut antal lediga platser \n3. Beräkna vinsten av antalet sålda biljetter \n4. Avsluta programmet");
         System.out.println();
         System.out.print("Inmata menyval här: ");
-        int val = tangentbord.nextInt();
-        tangentbord.nextLine();
+        int val = get_user_input();
         System.out.println();
         return val;
+    }
+    static int get_user_input() {
+        int input_val = tangentbord.nextInt();
+        tangentbord.nextLine();
+        return input_val;
     }
     static void lägg_till_passagerare() {
         int obokade_platser = 0;
@@ -59,11 +63,9 @@ public class App {
         }else{
             System.out.println();
             System.out.print("Välj plats att boka: ");
-            int plats = tangentbord.nextInt();
-            tangentbord.nextLine();
+            int plats = get_user_input();
             System.out.print("Inmata personnummer för ny platsinnehavare: ");
-            array[plats-1] = tangentbord.nextInt();
-            tangentbord.nextLine();
+            array[plats-1] = get_user_input();
             System.out.println();
             System.out.println("Summering: \nVald plats "+plats+"\nPlatsinnehavare: "+array[plats]);
             System.out.println();
