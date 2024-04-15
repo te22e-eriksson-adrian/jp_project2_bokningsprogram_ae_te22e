@@ -11,34 +11,25 @@ public class App {
         while (menyval != 4) {
             //Meny
             menyval = start_meny();
-
-            //Lägga till en passagerare
-            if (menyval==1) {
-                lägg_till_passagerare();
-            }
-
-            //Antal lediga platser (val 2)
-            if (menyval==2) {
-                /* int lediga_platser = 0;
-                for (int i = 0; i < array.length; i++) {
-                    if (array[i]==0) {
-                        lediga_platser++;
-                    }
-                }
-                System.out.println("Antal lediga platser: "+lediga_platser); */
-                tillgängliga_platser();
-            }
-
-            //Vinst på antal sålda biljetter
-            if (menyval==3) {
-                /* double vinst = 0;
-                for (int i = 0; i < array.length; i++) {
-                    if (array[i] != 0) {
-                        vinst+=299.90;
-                    }
-                }
-                System.out.println("Vinst för antal sålda biljetter: "+vinst+" SEK"); */
-                biljett_vinst();
+            switch (menyval) {
+                case 1:
+                    //Lägga till en passagerare
+                    lägg_till_passagerare();
+                    break;
+                case 2:
+                    //Antal lediga platser (val 2)
+                    tillgängliga_platser();
+                    break;
+                case 3:
+                    //Vinst på antal sålda biljetter
+                    biljett_vinst();
+                    break;
+                default:
+                    //Om fel inmatad siffra
+                    System.out.println("Du inmatade ett felaktigt värde, var god starta om programmet och prova igen.");
+                    System.out.println();
+                    menyval = 4;
+                    break;
             }
         }
         //Avsluta programmet
@@ -71,7 +62,7 @@ public class App {
             int plats = tangentbord.nextInt();
             tangentbord.nextLine();
             System.out.print("Inmata personnummer för ny platsinnehavare: ");
-            array[plats] = tangentbord.nextInt();
+            array[plats-1] = tangentbord.nextInt();
             tangentbord.nextLine();
             System.out.println();
             System.out.println("Summering: \nVald plats "+plats+"\nPlatsinnehavare: "+array[plats]);
