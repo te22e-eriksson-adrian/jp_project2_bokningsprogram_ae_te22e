@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         menyval = 0;
 
-        while (menyval != 4) {
+        while (menyval != 5) {
             //Meny
             menyval = start_meny();
             switch (menyval) {
@@ -24,11 +24,15 @@ public class App {
                     //Vinst på antal sålda biljetter
                     biljett_vinst();
                     break;
+                case 4:
+                    //Hitta bokad plats
+                    hitta_bokad_plats();
+                    break;
                 default:
                     //Om fel inmatad siffra
                     System.out.println("Du inmatade ett felaktigt värde, var god starta om programmet och prova igen.");
                     System.out.println();
-                    menyval = 4;
+                    menyval = 5;
                     break;
             }
         }
@@ -38,7 +42,7 @@ public class App {
     }
     static int start_meny() {
         System.out.println("Bokningssystem för bussresor:");
-        System.out.println("1. Lägga till en passagerare - boka en obokad plats \n2. Skriv ut antal lediga platser \n3. Beräkna vinsten av antalet sålda biljetter \n4. Avsluta programmet");
+        System.out.println("1. Lägga till en passagerare - boka en obokad plats \n2. Skriv ut antal lediga platser \n3. Beräkna vinsten av antalet sålda biljetter \n4. Hitta kundens bokade plats \n5. Avsluta programmet");
         System.out.println();
         System.out.print("Inmata menyval här: ");
         int val = get_user_input();
@@ -89,6 +93,21 @@ public class App {
             }
         }
         System.out.println("Vinst för antal sålda biljetter: "+vinst+" SEK");
+        System.out.println();
+    }
+    static void hitta_bokad_plats() {
+        int status = 0;
+        System.out.print("Välj personnummer att söka efter: ");
+        int nummer = get_user_input();
+        for (int i = 0; i < array.length; i++) {
+            if (array[i]==nummer) {
+                System.out.println("Personnummer "+nummer+" har plats nummer: "+(i+1));
+                status = 1;
+            }
+        }
+        if (status==0) {
+            System.out.println("Personnummer "+nummer+" har ingen registrerad plats.");
+        }
         System.out.println();
     }
 }
