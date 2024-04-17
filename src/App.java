@@ -9,7 +9,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         menyval = 0;
 
-        while (menyval != 6) {
+        while (menyval != 7) {
             //Meny
             menyval = start_meny();
             switch (menyval) {
@@ -30,6 +30,10 @@ public class App {
                     biljett_vinst();
                     break;
                 case 5:
+                    //Lista passagerare
+                    lista_passagerare();
+                    break;
+                case 6:
                     //Hitta bokad plats
                     hitta_bokad_plats();
                     break;
@@ -37,7 +41,7 @@ public class App {
                     //Om fel inmatad siffra
                     System.out.println("Du inmatade ett felaktigt värde, var god starta om programmet och prova igen.");
                     System.out.println();
-                    menyval = 6;
+                    menyval = 7;
                     break;
             }
         }
@@ -47,7 +51,7 @@ public class App {
     }
     static int start_meny() {
         System.out.println("Bokningssystem för bussresor:");
-        System.out.println("1. Lägga till en passagerare \n2. Avboka en passagerare \n3. Skriv ut antal lediga platser \n4. Beräkna vinsten av antalet sålda biljetter \n5. Hitta kundens bokade plats \n6. Avsluta programmet");
+        System.out.println("1. Lägga till en passagerare \n2. Avboka en passagerare \n3. Skriv ut antal lediga platser \n4. Beräkna vinsten av antalet sålda biljetter \n5. Lista passagerare \n6. Hitta kundens bokade plats \n7. Avsluta programmet");
         System.out.println();
         System.out.print("Inmata menyval här: ");
         int val = get_user_input();
@@ -134,6 +138,22 @@ public class App {
         }
         if (status==0) {
             System.out.println("Personnummer "+nummer+" fanns inte registrerat. (Ingen avbokades.)");
+        }
+        System.out.println();
+    }
+    static void lista_passagerare() {
+        System.out.println("Vuxna passagerare (18 eller mer):");
+        for (int i = 0; i < ålder.length; i++) {
+            if (ålder[i] != 0 && ålder[i] >= 18) {
+                System.out.println(array[i]+" - Ålder: "+ålder[i]);
+            }
+        }
+        System.out.println();
+        System.out.println("Passagerare som är barn (under 18):");
+        for (int i = 0; i < ålder.length; i++) {
+            if (ålder[i] != 0 && ålder[i] < 18) {
+                System.out.println(array[i]+" - Ålder: "+ålder[i]);
+            }
         }
         System.out.println();
     }
