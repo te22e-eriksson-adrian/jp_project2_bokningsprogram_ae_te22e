@@ -4,7 +4,7 @@ public class App {
     
     static Scanner tangentbord = new Scanner(System.in);
     static int menyval;
-    static int[] array = new int[20];
+    static int[] platser = new int[20];
     static int[] ålder = new int[20];
     public static void main(String[] args) throws Exception {
         menyval = 0;
@@ -65,8 +65,8 @@ public class App {
     }
     static void lägg_till_passagerare() {
         int obokade_platser = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i]==0) {
+        for (int i = 0; i < platser.length; i++) {
+            if (platser[i]==0) {
                 System.out.println("Plats "+(i+1));
                 obokade_platser++;
             }
@@ -78,18 +78,18 @@ public class App {
             System.out.print("Välj plats att boka: ");
             int plats = get_user_input();
             System.out.print("Inmata personnummer för ny platsinnehavare: ");
-            array[plats-1] = get_user_input();
+            platser[plats-1] = get_user_input();
             System.out.print("Inmata ålder för passageraren: ");
             ålder[plats-1] = get_user_input();
             System.out.println();
-            System.out.println("Summering: \nVald plats "+plats+"\nPlatsinnehavare: "+array[plats]);
+            System.out.println("Summering: \nVald plats "+plats+"\nPlatsinnehavare: "+platser[plats]);
             System.out.println();
         }
     }
     static void tillgängliga_platser() {
         int lediga_platser = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i]==0) {
+        for (int i = 0; i < platser.length; i++) {
+            if (platser[i]==0) {
                 lediga_platser++;
             }
         }
@@ -114,8 +114,8 @@ public class App {
         int status = 0;
         System.out.print("Välj personnummer att söka efter: ");
         int nummer = get_user_input();
-        for (int i = 0; i < array.length; i++) {
-            if (array[i]==nummer) {
+        for (int i = 0; i < platser.length; i++) {
+            if (platser[i]==nummer) {
                 System.out.println("Personnummer "+nummer+" har plats nummer: "+(i+1));
                 status = 1;
             }
@@ -129,9 +129,9 @@ public class App {
         int status = 0;
         System.out.print("Välj personnummer till passagerare att avboka: ");
         int nummer = get_user_input();
-        for (int i = 0; i < array.length; i++) {
-            if (array[i]==nummer) {
-                array[i] = 0;
+        for (int i = 0; i < platser.length; i++) {
+            if (platser[i]==nummer) {
+                platser[i] = 0;
                 System.out.println("Personnummer "+nummer+" har inte längre en plats");
                 status = 1;
             }
@@ -145,14 +145,14 @@ public class App {
         System.out.println("Vuxna passagerare (18 eller mer):");
         for (int i = 0; i < ålder.length; i++) {
             if (ålder[i] != 0 && ålder[i] >= 18) {
-                System.out.println(array[i]+" - Ålder: "+ålder[i]);
+                System.out.println(platser[i]+" - Ålder: "+ålder[i]);
             }
         }
         System.out.println();
         System.out.println("Passagerare som är barn (under 18):");
         for (int i = 0; i < ålder.length; i++) {
             if (ålder[i] != 0 && ålder[i] < 18) {
-                System.out.println(array[i]+" - Ålder: "+ålder[i]);
+                System.out.println(platser[i]+" - Ålder: "+ålder[i]);
             }
         }
         System.out.println();
