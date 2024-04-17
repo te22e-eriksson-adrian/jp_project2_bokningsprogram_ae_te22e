@@ -5,6 +5,7 @@ public class App {
     static Scanner tangentbord = new Scanner(System.in);
     static int menyval;
     static int[] array = new int[20];
+    static int[] ålder = new int[20];
     public static void main(String[] args) throws Exception {
         menyval = 0;
 
@@ -74,6 +75,8 @@ public class App {
             int plats = get_user_input();
             System.out.print("Inmata personnummer för ny platsinnehavare: ");
             array[plats-1] = get_user_input();
+            System.out.print("Inmata ålder för passageraren: ");
+            ålder[plats-1] = get_user_input();
             System.out.println();
             System.out.println("Summering: \nVald plats "+plats+"\nPlatsinnehavare: "+array[plats]);
             System.out.println();
@@ -91,9 +94,13 @@ public class App {
     }
     static void biljett_vinst() {
         double vinst = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] != 0) {
-                vinst+=299.90;
+        for (int i = 0; i < ålder.length; i++) {
+            if (ålder[i] != 0) {
+                if (ålder[i]>=18) {
+                    vinst+=299.90;
+                }else{
+                    vinst+=149.90;
+                }
             }
         }
         System.out.println("Vinst för antal sålda biljetter: "+vinst+" SEK");
