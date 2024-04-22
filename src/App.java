@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -59,8 +60,14 @@ public class App {
         return val;
     }
     static int get_user_input() {
-        int input_val = tangentbord.nextInt();
-        tangentbord.nextLine();
+        int input_val = 0;
+        try {
+            input_val = tangentbord.nextInt();
+            tangentbord.nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("Felaktig inmatning, var god försök igen med siffror!");
+            input_val = 7;
+        }
         return input_val;
     }
     static void lägg_till_passagerare() {
