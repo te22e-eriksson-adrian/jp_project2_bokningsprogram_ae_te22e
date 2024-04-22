@@ -65,16 +65,23 @@ public class App {
     }
     static void lägg_till_passagerare() {
         int obokade_platser = 0;
+
+        System.out.println("Lediga platser:");
         for (int i = 0; i < platser.length; i++) {
-            if (platser[i]==0) {
+            if (platser[i]==0 && (i%4==0 || (i+1)%4==0)) {
+                System.out.println("Fönsterplats "+(i+1));
+                obokade_platser++;
+            }
+            else if(platser[i]==0) {
                 System.out.println("Plats "+(i+1));
                 obokade_platser++;
             }
         }
+        System.out.println();
+
         if (obokade_platser==0) {
             System.out.println("Tyvärr finns det inga lediga platser kvar.");
         }else{
-            System.out.println();
             System.out.print("Välj plats att boka: ");
             int plats = get_user_input();
             System.out.print("Inmata personnummer för ny platsinnehavare: ");
@@ -83,8 +90,8 @@ public class App {
             ålder[plats-1] = get_user_input();
             System.out.println();
             System.out.println("Summering: \nVald plats "+plats+"\nPlatsinnehavare: "+platser[plats]);
-            System.out.println();
         }
+        System.out.println();
     }
     static void tillgängliga_platser() {
         int lediga_platser = 0;
