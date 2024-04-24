@@ -1,17 +1,42 @@
+//Importering från java-biblioteket
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/** Författare: Adrian Eriksson, Te22E
+ * Programmet låter en anställd på ett bussresebolag sköta bokningar och administrera personuppgifter för
+ * passagerare. Detta gör denna genom att navigera systemet utifrån instruktioner som visas i terminalen.
+ * För att välja ett visst alternativ använder den anställde, enhetens tangentbord för att genom siffror
+ * (exempelvis menysiffra, platsnummer eller personnummer/födelsedatum) eller andra uppgifter göra val i 
+ * programmet.
+ * @author Adrian Eriksson Te22E
+ * @version 1.0
+ * @since 2024
+ */
+
 public class App {
-    
+
+    /**Globala variabler
+    * Scanner som låter programmet ta in inforamtion från tangentbordet.
+    * Denna tar in inmatningar från tangentbordet och distribuerar informationen
+    * till den variabel som är likställd med scannern.
+    * 
+    * Den andra globala variabeln lagrar menyvalet för att avgöra vad som händer i menyn.
+    *
+    * De sista två är fält/arrayer som lagrar, i fallet med "platser" lagrar personnummer för 
+    * platsinnehavaren eller en nolla ifall platsen är tom. Den andra lagrar åldern för passageraren på
+    * varje ockuperad plats.
+    */    
     static Scanner tangentbord = new Scanner(System.in);
     static int menyval;
     static int[] platser = new int[20];
     static int[] ålder = new int[20];
     public static void main(String[] args) throws Exception {
+        //Variabeln för menyval nollställs när man startar eller startar om programmet.
         menyval = 0;
 
+        //Programmets fortgång/cirkulation avbryts ifall menyvalet är detsamma som 7.
         while (menyval != 7) {
-            //Meny
+            //Startmeny
             menyval = start_meny();
             switch (menyval) {
                 case 1:
@@ -46,10 +71,15 @@ public class App {
                     break;
             }
         }
-        //Avsluta programmet
+        //Informerar att programmet avslutats och att scannern inte längre behövs.
         System.out.println("Programmet avslutat.");
         tangentbord.close();
     }
+    //Metoder för programmet:
+    /** METOD: start_meny
+     * INPARAMETER: INGET.
+     * @return val : menyval för att avgöra vilket alternativ som valts i startmenyn.
+     */
     static int start_meny() {
         System.out.println("Bokningssystem för bussresor:");
         System.out.println("1. Lägga till en passagerare \n2. Avboka en passagerare \n3. Skriv ut antal lediga platser \n4. Beräkna vinsten av antalet sålda biljetter \n5. Lista passagerare \n6. Hitta kundens bokade plats \n7. Avsluta programmet");
@@ -59,6 +89,11 @@ public class App {
         System.out.println();
         return val;
     }
+
+    /** METOD: get_user_input
+     * INPARAMETER: INGET.
+     * @return input_val RETUR: Returnerar inmatningen som användaren gör med hjälp av scannern/tangentbordet.
+     */
     static int get_user_input() {
         int input_val = 0;
         try {
@@ -70,6 +105,11 @@ public class App {
         }
         return input_val;
     }
+
+    /** METOD: lägga_till_passagerare
+     * INPARAMETER: INGET.
+     * RETUR: INGET.
+     */
     static void lägg_till_passagerare() {
         int obokade_platser = 0;
 
@@ -100,6 +140,11 @@ public class App {
         }
         System.out.println();
     }
+
+    /** METOD: tillgängliga_platser
+     * INPARAMETER: INGET.
+     * RETUR: INGET.
+     */
     static void tillgängliga_platser() {
         int lediga_platser = 0;
         for (int i = 0; i < platser.length; i++) {
@@ -110,6 +155,11 @@ public class App {
         System.out.println("Antal lediga platser: "+lediga_platser);
         System.out.println();
     }
+
+    /** METOD: biljett_vinst
+     * INPARAMETER: INGET.
+     * RETUR: INGET.
+     */
     static void biljett_vinst() {
         double vinst = 0;
         for (int i = 0; i < ålder.length; i++) {
@@ -124,6 +174,11 @@ public class App {
         System.out.println("Vinst för antal sålda biljetter: "+vinst+" SEK");
         System.out.println();
     }
+
+    /** METOD: hitta_bokad_plats
+     * INPARAMETER: INGET.
+     * RETUR: INGET.
+     */
     static void hitta_bokad_plats() {
         int status = 0;
         System.out.print("Välj personnummer att söka efter: ");
@@ -139,6 +194,11 @@ public class App {
         }
         System.out.println();
     }
+
+    /** METOD: avboka_passagerare
+     * INPARAMETER: INGET.
+     * RETUR: INGET.
+     */
     static void avboka_passagerare() {
         int status = 0;
         System.out.print("Välj personnummer till passagerare att avboka: ");
@@ -155,6 +215,11 @@ public class App {
         }
         System.out.println();
     }
+
+    /** METOD: lista_passagerare
+     * INPARAMETER: INGET.
+     * RETUR: INGET.
+     */
     static void lista_passagerare() {
         System.out.println("Vuxna passagerare (18 eller mer):");
         for (int i = 0; i < ålder.length; i++) {
