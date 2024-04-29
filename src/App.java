@@ -35,7 +35,7 @@ public class App {
         menyval = 0;
 
         //Programmets fortgång/cirkulation avbryts ifall menyvalet är detsamma som 7.
-        while (menyval != 7) {
+        while (menyval != 8) {
             //Startmeny
             menyval = start_meny();
             switch (menyval) {
@@ -63,11 +63,26 @@ public class App {
                     //Hitta bokad plats
                     hitta_bokad_plats();
                     break;
+                case 7:
+                    //Enkel Miniräknare
+                    System.out.print("Välj räknesätt (1 = +, 2 = -, 3 = *, 4 = /): ");
+                    int metod = get_user_input();
+                    System.out.print("Välj tal 1: ");
+                    int tal_ett = get_user_input();
+                    System.out.print("Välj tal 2: ");
+                    int tal_två = get_user_input();
+                    double svar = enkel_miniräknare(metod, tal_ett, tal_två);
+                    System.out.println(svar);
+                    System.out.println();
+                    break;
+                case 8:
+                    System.out.println();
+                    break;
                 default:
                     //Om fel inmatad siffra
                     System.out.println("Du inmatade ett felaktigt värde, var god starta om programmet och prova igen.");
                     System.out.println();
-                    menyval = 7;
+                    menyval = 8;
                     break;
             }
         }
@@ -82,7 +97,7 @@ public class App {
      */
     static int start_meny() {
         System.out.println("Bokningssystem för bussresor:");
-        System.out.println("1. Lägga till en passagerare \n2. Avboka en passagerare \n3. Skriv ut antal lediga platser \n4. Beräkna vinsten av antalet sålda biljetter \n5. Lista passagerare \n6. Hitta kundens bokade plats \n7. Avsluta programmet");
+        System.out.println("1. Lägga till en passagerare \n2. Avboka en passagerare \n3. Skriv ut antal lediga platser \n4. Beräkna vinsten av antalet sålda biljetter \n5. Lista passagerare \n6. Hitta kundens bokade plats \n7. Enkel miniräknare \n8. Avsluta programmet");
         System.out.println();
         System.out.print("Inmata menyval här: ");
         int val = get_user_input();
@@ -101,7 +116,7 @@ public class App {
             tangentbord.nextLine();
         } catch (InputMismatchException e) {
             System.out.println("Felaktig inmatning, var god försök igen med siffror!");
-            input_val = 7;
+            input_val = 8;
         }
         return input_val;
     }
@@ -235,5 +250,31 @@ public class App {
             }
         }
         System.out.println();
+    }
+
+    /** METOD: enkel_miniraknare
+     * INPARAMETER: val av räknesätt, term ett/faktor ett/täljare, term två/faktor två/nämnare.
+     * RETUR: resultat på uträkning.
+     */
+    static double enkel_miniräknare(int räknesätt, int tal1, int tal2) {
+        double resultat = 0;
+        switch (räknesätt) {
+            case 1:
+                resultat = tal1+tal2;
+                break;
+            case 2:
+                resultat = tal1-tal2;
+                break;
+            case 3:
+                resultat = tal1*tal2;
+                break;
+            case 4:
+                resultat = tal1/tal2;
+                break;
+            default:
+                System.out.println("Felaktig inmatning. Var god, börja om och läs instruktionerna!");
+                break;
+        }
+        return resultat;
     }
 }
